@@ -7,7 +7,7 @@
 # ----------
 
 import enum
-from typing import List, Tuple
+from typing import List
 
 class Style(enum.Enum):
     '''lower camel case, like: <doSomething> '''
