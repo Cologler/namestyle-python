@@ -11,8 +11,6 @@ import typing
 _re_sep = re.compile('[_ ]')
 _re_word = re.compile('^[a-zA-Z][a-z]+')
 
-_re_split_words = re.compile('^([a-z][a-z]+)(?:_([a-z][a-z]+))*$')
-
 def split_words(text: str) -> typing.List[str]:
     'split a str into a typing.List[str]'
     words = []
