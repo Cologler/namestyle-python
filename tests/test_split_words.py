@@ -12,11 +12,17 @@ from namestyle import (
     to_camel_case,
 )
 
-def test_single_word():
+def test_split_words():
     assert split_words('Function') == ('Function', )
-
-def test_single_word_lowercase():
     assert split_words('function') == ('function', )
+
+    # example from http://docs.peewee-orm.com/en/latest/peewee/models.html#table-names
+    assert split_words('User') == ('User', )
+    assert split_words('UserProfile') == ('User', 'Profile')
+    assert split_words('APIResponse') == ('API', 'Response')
+    assert split_words('WebHTTPRequest') == ('Web', 'HTTP', 'Request')
+    assert split_words('mixedCamelCase') == ('mixed', 'Camel', 'Case')
+    assert split_words('Name2Numbers3XYZ') == ('Name', '2', 'Numbers', '3', 'XYZ')
 
 def test_snake_case():
     text = 'do_whatever_you_want'

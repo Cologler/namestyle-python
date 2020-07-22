@@ -9,7 +9,7 @@ import re
 import typing
 
 _re_sep = re.compile('[_ ]')
-_re_word = re.compile('^[a-zA-Z][a-z]+')
+_re_word = re.compile('^(?:([a-zA-Z](?:[a-z]+|[A-Z]*))(?:$|[A-Z0-9])|([0-9]+))')
 
 def split_words(text: str) -> typing.List[str]:
     'split a str into a typing.List[str]'
@@ -18,11 +18,14 @@ def split_words(text: str) -> typing.List[str]:
         while True:
             match = _re_word.match(part)
             if match:
-                word = match.group(0)
+                word = match.group(1) or match.group(2)
+                assert word, word
                 words.append(word)
                 part = part[len(word):]
             else:
                 break
+        if part:
+            words.append(part)
     return tuple(words)
 
 def to_snake_case(words: typing.List[str]) -> str:
